@@ -54,12 +54,13 @@ const SocialProofNotification = () => {
         <button
           onClick={() => setIsVisible(false)}
           className="absolute top-2 right-2 p-1 text-muted-foreground hover:text-foreground rounded-full hover:bg-muted"
+          aria-label="Close notification"
         >
-          <X className="w-3 h-3" />
+          <X className="w-3 h-3" aria-hidden={true} />
         </button>
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center">
-            <UserPlus className="w-5 h-5 text-secondary" />
+            <div className="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center">
+            <UserPlus className="w-5 h-5 text-secondary" aria-hidden={true} />
           </div>
           <div>
             <p className="text-sm font-medium">

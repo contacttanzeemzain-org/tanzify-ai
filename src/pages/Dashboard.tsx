@@ -12,9 +12,9 @@ import {
 
 const Dashboard = () => {
   const [copied, setCopied] = useState(false);
-  const { user, logout } = useTranscriptions();
+  const { user, logout } = useAuth();
   const { transcriptions } = useTranscriptions();
-  const referralCode = user?.email.split('@')[0].toUpperCase() + "123" || "USER123";
+  const referralCode = user && user.email ? `${user.email.split("@")[0].toUpperCase()}123` : "USER123";
 
   const getSeasonalMessage = () => {
     const now = new Date();
@@ -34,6 +34,14 @@ const Dashboard = () => {
   };
 
   const seasonalMessage = getSeasonalMessage();
+
+  const getPersonalizedMessage = () => {
+    if (user) {
+      const name = (user.name && user.name.split(' ')[0]) || (user.email && user.email.split('@')[0]) || 'there';
+      return `Good to see you, ${name}!`;
+    }
+    return 'Welcome back!';
+  };
 
   // Recovery magic
   const lastVisit = localStorage.getItem('lastVisit');
@@ -168,7 +176,7 @@ const Dashboard = () => {
               >
                 <div className="flex items-start justify-between mb-4">
                   <div className={`w-12 h-12 rounded-xl ${getColorClasses(stat.color)} border flex items-center justify-center`}>
-                    <stat.icon className="w-6 h-6" />
+                    <stat.icon className="w-6 h-6" aria-hidden={true} />
                   </div>
                 </div>
                 <div className="mb-2">
@@ -277,14 +285,14 @@ const Dashboard = () => {
                         </td>
                         <td className="py-4">
                           <div className="flex items-center justify-end gap-1">
-                            <Button variant="ghost" size="icon" className="h-8 w-8">
-                              <Eye className="w-4 h-4" />
+                            <Button variant="ghost" size="icon" className="h-8 w-8" aria-label="View transcript">
+                              <Eye className="w-4 h-4" aria-hidden={true} />
                             </Button>
-                            <Button variant="ghost" size="icon" className="h-8 w-8">
-                              <Download className="w-4 h-4" />
+                            <Button variant="ghost" size="icon" className="h-8 w-8" aria-label="Download transcript">
+                              <Download className="w-4 h-4" aria-hidden={true} />
                             </Button>
-                            <Button variant="ghost" size="icon" className="h-8 w-8 text-destructive hover:text-destructive">
-                              <Trash2 className="w-4 h-4" />
+                            <Button variant="ghost" size="icon" className="h-8 w-8 text-destructive hover:text-destructive" aria-label="Delete transcript">
+                              <Trash2 className="w-4 h-4" aria-hidden={true} />
                             </Button>
                           </div>
                         </td>
@@ -300,8 +308,8 @@ const Dashboard = () => {
               {/* Referral Card */}
               <div className="bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 rounded-2xl border border-primary/20 p-6">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-accent/20 border border-accent/30 flex items-center justify-center">
-                    <Users className="w-6 h-6 text-accent" />
+                    <div className="w-12 h-12 rounded-xl bg-accent/20 border border-accent/30 flex items-center justify-center">
+                    <Users className="w-6 h-6 text-accent" aria-hidden={true} />
                   </div>
                   <div>
                     <h3 className="font-heading font-bold">Invite Friends</h3>
@@ -322,8 +330,9 @@ const Dashboard = () => {
                     size="icon"
                     onClick={handleCopyReferral}
                     className="shrink-0"
+                    aria-label="Copy referral link"
                   >
-                    {copied ? <Check className="w-4 h-4 text-secondary" /> : <Copy className="w-4 h-4" />}
+                    {copied ? <Check className="w-4 h-4 text-secondary" aria-hidden={true} /> : <Copy className="w-4 h-4" aria-hidden={true} />}
                   </Button>
                 </div>
 
@@ -342,7 +351,7 @@ const Dashboard = () => {
               {/* Achievements */}
               <div className="bg-card rounded-2xl border border-border p-6">
                 <h3 className="font-heading font-bold mb-4 flex items-center gap-2">
-                  <Award className="w-5 h-5 text-accent" />
+                  <Award className="w-5 h-5 text-accent" aria-hidden={true} />
                   Achievements
                 </h3>
                 <div className="space-y-3">

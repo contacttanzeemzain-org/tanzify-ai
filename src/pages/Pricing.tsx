@@ -5,7 +5,7 @@ import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
 import { razorpayService } from "@/services/razorpay";
-import { Check, Sparkles, Users, Zap, Crown, Loader2 } from "lucide-react";
+import { Check, Sparkles, Users, Zap, Crown, Loader2, GraduationCap, Building2, Headphones } from "lucide-react";
 
 const Pricing = () => {
   const [currency, setCurrency] = useState<"USD" | "INR">("INR");
@@ -144,7 +144,7 @@ const Pricing = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <main className="pt-24 pb-16">
+      <main id="content" className="pt-24 pb-16">
         <div className="container mx-auto px-4">
           {/* Header */}
           <div className="text-center mb-12">
@@ -180,7 +180,7 @@ const Pricing = () => {
 
                 <div className="mb-6">
                   <div className={`w-12 h-12 rounded-xl ${plan.popular ? 'bg-primary/10' : 'bg-muted'} flex items-center justify-center mb-4`}>
-                    <plan.icon className={`w-6 h-6 ${plan.popular ? 'text-primary' : 'text-muted-foreground'}`} />
+                    <plan.icon aria-hidden={true} className={`w-6 h-6 ${plan.popular ? 'text-primary' : 'text-muted-foreground'}`} />
                   </div>
                   <h3 className="font-heading text-xl font-bold">{plan.name}</h3>
                   <p className="text-sm text-muted-foreground">{plan.description}</p>
@@ -205,7 +205,7 @@ const Pricing = () => {
                 <ul className="space-y-3 mb-6">
                   {plan.features.map((feature, featureIndex) => (
                     <li key={featureIndex} className="flex items-start gap-2 text-sm">
-                      <Check className="w-4 h-4 text-secondary mt-0.5 flex-shrink-0" />
+                      <Check aria-hidden={true} className="w-4 h-4 text-secondary mt-0.5 flex-shrink-0" />
                       <span>{feature}</span>
                     </li>
                   ))}
@@ -219,7 +219,7 @@ const Pricing = () => {
                   disabled={isProcessing}
                 >
                   {isProcessing ? (
-                    <Loader2 className="w-4 h-4 animate-spin mr-2" />
+                    <Loader2 aria-hidden={true} className="w-4 h-4 animate-spin mr-2" />
                   ) : (
                     plan.cta
                   )}
@@ -240,7 +240,7 @@ const Pricing = () => {
                   className="bg-card rounded-xl p-6 border border-border card-hover text-center"
                 >
                   <div className={`w-14 h-14 rounded-xl bg-${offer.color}/10 border border-${offer.color}/20 flex items-center justify-center mx-auto mb-4`}>
-                    <offer.icon className={`w-7 h-7 text-${offer.color}`} />
+                    <offer.icon aria-hidden={true} className={`w-7 h-7 text-${offer.color}`} />
                   </div>
                   <h3 className="font-heading font-bold text-lg mb-2">{offer.title}</h3>
                   <p className="text-sm text-muted-foreground">{offer.description}</p>

@@ -4,8 +4,9 @@ import HeroSection from "@/components/home/HeroSection";
 import HowItWorks from "@/components/home/HowItWorks";
 import Testimonials from "@/components/home/Testimonials";
 import PricingSection from "@/components/home/PricingSection";
-import ShareReward from "@/components/home/ShareReward";
 import FAQ from "@/components/home/FAQ";
+import CountdownTimer from "@/components/home/CountdownTimer";
+import StatsSection from "@/components/home/StatsSection";
 import SocialProofNotification from "@/components/home/SocialProofNotification";
 
 const Index = () => {
@@ -14,10 +15,13 @@ const Index = () => {
       <Navbar />
       <main>
         <HeroSection />
+        <div className="container mx-auto px-4 mt-8">
+          <CountdownTimer />
+        </div>
         <HowItWorks />
+        <StatsSection />
         <Testimonials />
         <PricingSection />
-        <ShareReward />
         <FAQ />
       </main>
       <Footer />

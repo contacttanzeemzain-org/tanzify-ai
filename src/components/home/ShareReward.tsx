@@ -31,7 +31,7 @@ const ShareReward = () => {
           
           <div className="relative text-center">
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-accent/20 border border-accent/30 mb-6">
-              <Gift className="w-8 h-8 text-accent" />
+              <Gift className="w-8 h-8 text-accent" aria-hidden={true} />
             </div>
             
             <h2 className="font-heading text-2xl sm:text-3xl font-bold mb-3">
@@ -48,7 +48,7 @@ const ShareReward = () => {
                 variant="outline"
                 className="gap-2 border-[#1DA1F2]/30 text-[#1DA1F2] hover:bg-[#1DA1F2] hover:text-white"
               >
-                <Twitter className="w-5 h-5" />
+                <Twitter className="w-5 h-5" aria-hidden={true} />
                 Share on Twitter
               </Button>
               <Button 
@@ -56,13 +56,13 @@ const ShareReward = () => {
                 variant="outline"
                 className="gap-2 border-[#0A66C2]/30 text-[#0A66C2] hover:bg-[#0A66C2] hover:text-white"
               >
-                <Linkedin className="w-5 h-5" />
+                <Linkedin className="w-5 h-5" aria-hidden={true} />
                 Share on LinkedIn
               </Button>
             </div>
             
             <p className="text-xs text-muted-foreground mt-6 flex items-center justify-center gap-1">
-              <Share2 className="w-3 h-3" />
+              <Share2 className="w-3 h-3" aria-hidden={true} />
               Minutes credited instantly after sharing
             </p>
           </div>

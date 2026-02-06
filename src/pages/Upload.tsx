@@ -249,10 +249,10 @@ const Upload = () => {
               </div>
             )}
             <h1 className="font-heading text-3xl font-bold">
-              New <span className="gradient-text">Transcription</span>
+              New <span className="gradient-text">Transcription</span> — Upload & Transcribe
             </h1>
             <p className="text-muted-foreground mt-1">
-              Upload your audio file and get an accurate transcript in seconds
+              Upload audio or video and receive an editable, timestamped transcript — typically under 60 seconds for short files.
             </p>
           </div>
 
@@ -330,7 +330,7 @@ const Upload = () => {
                   <label htmlFor="file-upload" className={limitReached ? 'cursor-not-allowed' : 'cursor-pointer'}>
                     <div className="flex flex-col items-center">
                       <div className="w-20 h-20 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-6">
-                        <UploadIcon className="w-10 h-10 text-primary" />
+                        <UploadIcon className="w-10 h-10 text-primary" aria-hidden={true} />
                       </div>
                       {limitReached ? (
                         <div className="text-center">
@@ -375,7 +375,7 @@ const Upload = () => {
                   <div className="flex items-center justify-between mb-6">
                     <div className="flex items-center gap-4">
                       <div className="w-14 h-14 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
-                        <FileAudio className="w-7 h-7 text-primary" />
+                        <FileAudio className="w-7 h-7 text-primary" aria-hidden={true} />
                       </div>
                       <div>
                         <p className="font-semibold truncate max-w-[200px]">{file.name}</p>
@@ -385,8 +385,8 @@ const Upload = () => {
                       </div>
                     </div>
                     {!isComplete && (
-                      <Button variant="ghost" size="icon" onClick={handleReset}>
-                        <X className="w-5 h-5" />
+                      <Button variant="ghost" size="icon" onClick={handleReset} aria-label="Remove file">
+                        <X className="w-5 h-5" aria-hidden={true} />
                       </Button>
                     )}
                   </div>
@@ -400,7 +400,7 @@ const Upload = () => {
                         </span>
                         <span className="font-medium">
                           {isProcessing ? (
-                            <Loader2 className="w-4 h-4 animate-spin inline" />
+                            <Loader2 className="w-4 h-4 animate-spin inline" aria-hidden={true} />
                           ) : (
                             `${Math.min(Math.round(uploadProgress), 100)}%`
                           )}
@@ -457,17 +457,17 @@ const Upload = () => {
             <div className="bg-card rounded-2xl border border-border p-6">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="font-heading text-xl font-bold flex items-center gap-2">
-                  <FileText className="w-5 h-5 text-primary" />
+                  <FileText className="w-5 h-5 text-primary" aria-hidden={true} />
                   Transcript Preview
                 </h2>
                 {isComplete && (
                   <div className="flex gap-2">
                     <Button variant="outline" size="sm" onClick={handleCopy}>
-                      {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                      {copied ? <Check className="w-4 h-4" aria-hidden={true} /> : <Copy className="w-4 h-4" aria-hidden={true} />}
                       <span className="ml-1">{copied ? "Copied!" : "Copy"}</span>
                     </Button>
                     <Button variant="default" size="sm">
-                      <Download className="w-4 h-4" />
+                      <Download className="w-4 h-4" aria-hidden={true} />
                       <span className="ml-1">Download</span>
                     </Button>
                   </div>
@@ -477,16 +477,16 @@ const Upload = () => {
               <div className={`min-h-[400px] ${!isComplete ? 'flex items-center justify-center' : ''}`}>
                 {!file && (
                   <div className="text-center text-muted-foreground">
-                    <FileAudio className="w-16 h-16 mx-auto mb-4 opacity-20" />
+                    <FileAudio className="w-16 h-16 mx-auto mb-4 opacity-20" aria-hidden={true} />
                     <p>Upload an audio file to see the transcript here</p>
                   </div>
                 )}
 
                 {file && !isComplete && (
                   <div className="text-center text-muted-foreground">
-                    <Loader2 className="w-12 h-12 mx-auto mb-4 animate-spin text-primary" />
+                    <Loader2 className="w-12 h-12 mx-auto mb-4 animate-spin text-primary" aria-hidden={true} />
                     <p>Processing your audio...</p>
-                    <p className="text-sm mt-2">This usually takes less than 60 seconds</p>
+                    <p className="text-sm mt-2">Typically under 60 seconds for short files</p>
                   </div>
                 )}
 
@@ -515,7 +515,7 @@ const Upload = () => {
                           <p className="text-sm text-muted-foreground mb-2">Want to download and save your transcripts?</p>
                           <Link to="/signup">
                             <Button variant="default" size="sm">
-                              Sign Up Free - Get 30 Minutes!
+                              Sign Up Free — Get 30 Minutes
                             </Button>
                           </Link>
                         </div>

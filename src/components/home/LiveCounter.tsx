@@ -22,12 +22,12 @@ const LiveCounter = () => {
         <div className="absolute inset-0 w-2.5 h-2.5 bg-secondary rounded-full animate-ping opacity-75" />
       </div>
       <span className="flex items-center gap-1.5 text-sm font-medium text-secondary">
-        <Users className="w-4 h-4" />
+        <Users className="w-4 h-4" aria-hidden={true} />
         <span className={`transition-all duration-300 ${isAnimating ? 'animate-counter' : ''}`}>
           {userCount.toLocaleString()}
         </span>
         users transcribing now
-        <Zap className="w-3.5 h-3.5 text-accent" />
+        <Zap className="w-3.5 h-3.5 text-accent" aria-hidden={true} />
       </span>
     </div>
   );

@@ -4,22 +4,22 @@ import { Zap, Sparkles, Twitter, Github, Linkedin, Mail, Shield, Lock, Award } f
 const Footer = () => {
   const footerLinks = {
     product: [
-      { name: "Features", path: "/#features" },
+      { name: "Features", path: "/features" },
       { name: "Pricing", path: "/pricing" },
       { name: "Dashboard", path: "/dashboard" },
       { name: "Upload", path: "/upload" },
     ],
     company: [
-      { name: "About Us", path: "#" },
-      { name: "Blog", path: "#" },
-      { name: "Careers", path: "#" },
-      { name: "Contact", path: "#" },
+      { name: "About Us", path: "/features" },
+      { name: "Blog", path: "/" },
+      { name: "Careers", path: "/" },
+      { name: "Contact", path: "/contact" },
     ],
     legal: [
-      { name: "Privacy Policy", path: "#" },
-      { name: "Terms of Service", path: "#" },
-      { name: "GDPR", path: "#" },
-      { name: "Security", path: "#" },
+      { name: "Privacy Policy", path: "/privacy" },
+      { name: "Terms of Service", path: "/terms" },
+      { name: "GDPR", path: "/privacy" },
+      { name: "Security", path: "/privacy" },
     ],
   };
 
@@ -44,7 +44,7 @@ const Footer = () => {
           <div className="flex flex-wrap justify-center gap-8">
             {trustBadges.map((badge, index) => (
               <div key={index} className="flex items-center gap-2 text-sm">
-                <badge.icon className="w-5 h-5 text-secondary" />
+                <badge.icon className="w-5 h-5 text-secondary" aria-hidden={true} />
                 <span>{badge.label}</span>
               </div>
             ))}
@@ -59,9 +59,9 @@ const Footer = () => {
             <Link to="/" className="flex items-center gap-2 mb-4">
               <div className="relative">
                 <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
-                  <Zap className="w-5 h-5 text-primary-foreground" />
+                  <Zap className="w-5 h-5 text-primary-foreground" aria-hidden={true} />
                 </div>
-                <Sparkles className="absolute -top-1 -right-1 w-4 h-4 text-accent" />
+                <Sparkles className="absolute -top-1 -right-1 w-4 h-4 text-accent" aria-hidden={true} />
               </div>
               <span className="font-heading font-bold text-xl text-background">
                 Tanzify<span className="text-primary">AI</span>
@@ -73,13 +73,13 @@ const Footer = () => {
             <div className="flex gap-3">
               {socialLinks.map((social, index) => (
                 <a
-                  key={index}
-                  href={social.href}
-                  className="w-10 h-10 rounded-lg bg-background/10 flex items-center justify-center hover:bg-primary transition-colors duration-300"
-                  aria-label={social.label}
-                >
-                  <social.icon className="w-5 h-5" />
-                </a>
+                    key={index}
+                    href={social.href}
+                    className="w-10 h-10 rounded-lg bg-background/10 flex items-center justify-center hover:bg-primary transition-colors duration-300"
+                    aria-label={social.label}
+                  >
+                    <social.icon className="w-5 h-5" aria-hidden={true} />
+                  </a>
               ))}
             </div>
           </div>

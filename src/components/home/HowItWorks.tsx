@@ -6,21 +6,24 @@ const HowItWorks = () => {
       icon: Upload,
       number: "01",
       title: "Upload Your Audio",
-      description: "Drag & drop any audio file. We support MP3, WAV, M4A, and 20+ formats up to 100MB.",
+      description:
+        "Drag & drop any audio or video file. We accept MP3, WAV, M4A, MP4 and more — files up to 100MB.",
       color: "primary",
     },
     {
       icon: Cpu,
       number: "02",
       title: "AI Transcribes",
-      description: "Our advanced AI processes your audio in seconds with 99% accuracy across 50+ languages.",
+      description:
+        "Our models quickly transcribe, identify speakers, and add punctuation & timestamps — optimized for production workflows.",
       color: "secondary",
     },
     {
       icon: Download,
       number: "03",
-      title: "Download & Share",
-      description: "Get your transcript instantly. Edit, export to multiple formats, or share with your team.",
+      title: "Edit, Export, Share",
+      description:
+        "Polish the transcript in-app, export SRT/VTT/TXT/DOCX, or share directly with teammates and CMS integrations.",
       color: "accent",
     },
   ];
@@ -68,46 +71,42 @@ const HowItWorks = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-2 bg-primary/10 text-primary font-medium rounded-full text-sm mb-4">
-            Simple 3-Step Process
+            Simple 3-Step Flow
           </span>
           <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-            How <span className="gradient-text">Tanzify AI</span> Works
+            How <span className="gradient-text">Tanzify AI</span> Delivers Production-Ready Transcripts
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            From audio to accurate transcript in under 60 seconds. No learning curve, no complicated setup.
+            Upload your audio, our AI transcribes and timestamps in seconds, and you get an editable, export-ready transcript with speaker separation and timestamps.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          {steps.map((step, index) => {
-            const colors = getColorClasses(step.color);
+        <div className="grid gap-8 md:grid-cols-3">
+          {steps.map((s) => {
+            const Icon: any = s.icon;
+            const classes = getColorClasses(s.color as string);
             return (
-              <div key={index} className="relative group">
-                {/* Connector line for desktop */}
-                {index < steps.length - 1 && (
-                  <div className="hidden md:block absolute top-20 left-[60%] w-[80%] h-0.5 bg-gradient-to-r from-border via-border to-transparent">
-                    <ArrowRight className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <div key={s.number} className={`p-6 border rounded-lg ${classes.bg} ${classes.border}`}>
+                <div className="flex items-start gap-4 mb-4">
+                  <div className={`w-12 h-12 flex items-center justify-center rounded-full ${classes.bg} border ${classes.border}`}>
+                    <Icon className={`w-6 h-6 ${classes.icon}`} aria-hidden />
                   </div>
-                )}
-
-                <div className="relative bg-card rounded-2xl p-8 border border-border card-hover">
-                  {/* Step number */}
-                  <span className={`absolute -top-4 -right-4 font-heading text-6xl font-bold ${colors.number} opacity-10`}>
-                    {step.number}
-                  </span>
-
-                  {/* Icon */}
-                  <div className={`w-16 h-16 rounded-2xl ${colors.bg} border ${colors.border} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                    <step.icon className={`w-8 h-8 ${colors.icon}`} />
+                  <div>
+                    <div className={`text-sm font-mono ${classes.number}`}>{s.number}</div>
+                    <h3 className="text-lg font-semibold">{s.title}</h3>
                   </div>
-
-                  {/* Content */}
-                  <h3 className="font-heading text-xl font-bold mb-3">{step.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{step.description}</p>
                 </div>
+                <p className="text-sm text-muted-foreground">{s.description}</p>
               </div>
             );
           })}
+        </div>
+
+        <div className="text-center mt-12">
+          <a href="/signup" className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-md shadow">
+            Get Started
+            <ArrowRight className="w-4 h-4" aria-hidden />
+          </a>
         </div>
       </div>
     </section>

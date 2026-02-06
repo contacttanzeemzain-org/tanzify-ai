@@ -78,13 +78,13 @@ const PaymentSuccess = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <main className="pt-24 pb-16">
+      <main id="content" className="pt-24 pb-16">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto">
             {/* Success Header */}
             <div className="text-center mb-8">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <CheckCircle className="w-8 h-8 text-green-600" />
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <CheckCircle aria-hidden={true} className="w-8 h-8 text-green-600" />
               </div>
               <h1 className="font-heading text-4xl font-bold mb-2">
                 Welcome to {planDetails.name} Plan!
@@ -98,8 +98,8 @@ const PaymentSuccess = () => {
             <Card className="mb-8">
               <CardHeader>
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <planDetails.icon className="w-5 h-5 text-primary" />
+                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <planDetails.icon aria-hidden={true} className="w-5 h-5 text-primary" />
                   </div>
                   <div>
                     <CardTitle>{planDetails.name} Plan</CardTitle>
@@ -113,7 +113,7 @@ const PaymentSuccess = () => {
                   <ul className="space-y-2">
                     {planDetails.features.map((feature: string, index: number) => (
                       <li key={index} className="flex items-center gap-2 text-sm">
-                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        <CheckCircle aria-hidden={true} className="w-4 h-4 text-green-500" />
                         {feature}
                       </li>
                     ))}

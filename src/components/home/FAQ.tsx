@@ -17,7 +17,7 @@ const FAQ = () => {
     },
     {
       question: "How fast is the transcription?",
-      answer: "Most audio files are transcribed in under 60 seconds! A typical 30-minute podcast episode takes about 2-3 minutes. We use parallel processing to ensure you get your transcripts as fast as possible.",
+      answer: "Short files often finish under 60 seconds; longer recordings scale linearly — a 30-minute episode typically completes in 2–3 minutes. We use parallel processing to prioritize speed without sacrificing accuracy.",
     },
     {
       question: "Is my audio data secure?",
@@ -42,7 +42,7 @@ const FAQ = () => {
   ];
 
   return (
-    <section className="py-20 bg-muted/30">
+    <section id="faq" className="py-16 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <span className="inline-block px-4 py-2 bg-primary/10 text-primary font-medium rounded-full text-sm mb-4">

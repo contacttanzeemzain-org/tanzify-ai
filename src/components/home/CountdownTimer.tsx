@@ -11,7 +11,7 @@ interface TimeLeft {
 const CountdownTimer = () => {
   const calculateTimeLeft = (): TimeLeft => {
     const endDate = new Date();
-    endDate.setDate(endDate.getDate() + 7); // 7 days from now
+    endDate.setDate(endDate.getDate() + 5); // 5 days from now
     endDate.setHours(23, 59, 59, 999);
     
     const difference = endDate.getTime() - new Date().getTime();
@@ -29,7 +29,15 @@ const CountdownTimer = () => {
   };
 
   const [timeLeft, setTimeLeft] = useState<TimeLeft>(calculateTimeLeft());
-  const [spotsLeft, setSpotsLeft] = useState(847);
+  const [spotsLeft, setSpotsLeft] = useState<number>(() => {
+    try {
+      const stored = sessionStorage.getItem("tanzify_spots_left");
+      if (stored) return Math.max(0, Number(stored));
+    } catch (e) {
+      // sessionStorage may be unavailable in some environments
+    }
+    return 1000; // start with 1,000 spots by default
+  });
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -42,16 +50,22 @@ const CountdownTimer = () => {
   useEffect(() => {
     // Simulate spots decreasing
     const spotsTimer = setInterval(() => {
-      setSpotsLeft((prev) => Math.max(prev - Math.floor(Math.random() * 2), 0));
+      setSpotsLeft((prev) => {
+        const next = Math.max(prev - (Math.random() < 0.6 ? 1 : 0), 0);
+        try {
+          sessionStorage.setItem("tanzify_spots_left", String(next));
+        } catch (e) {}
+        return next;
+      });
     }, 45000);
 
     return () => clearInterval(spotsTimer);
   }, []);
 
   const TimeBlock = ({ value, label }: { value: number; label: string }) => (
-    <div className="flex flex-col items-center">
-      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-card rounded-xl border border-border shadow-lg flex items-center justify-center">
-        <span className="font-heading text-2xl sm:text-3xl font-bold text-primary">
+    <div className="flex flex-col items-center" role="group" aria-label={`${value.toString().padStart(2, "0")} ${label}`}>
+      <div className="w-12 h-12 sm:w-16 sm:h-16 bg-card rounded-xl border border-border shadow-lg flex items-center justify-center">
+        <span className="font-heading text-xl sm:text-2xl font-bold text-primary">
           {value.toString().padStart(2, "0")}
         </span>
       </div>
@@ -62,16 +76,16 @@ const CountdownTimer = () => {
   );
 
   return (
-    <div className="relative overflow-hidden bg-gradient-to-r from-accent/10 via-primary/10 to-secondary/10 rounded-2xl p-6 sm:p-8 border border-accent/20">
+    <div className="relative overflow-hidden bg-gradient-to-r from-accent/10 via-primary/10 to-secondary/10 rounded-2xl p-4 sm:p-8 border border-accent/20">
       {/* Decorative elements */}
       <div className="absolute top-0 right-0 w-32 h-32 bg-accent/20 rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-0 w-32 h-32 bg-primary/20 rounded-full blur-3xl" />
       
-      <div className="relative">
+      <div className="relative" aria-live="polite" aria-atomic="true">
         <div className="flex items-center justify-center gap-2 mb-4">
-          <Gift className="w-5 h-5 text-accent animate-pulse" />
+          <Gift className="w-5 h-5 text-accent animate-pulse" aria-hidden={true} />
           <span className="text-accent font-semibold">LIMITED TIME OFFER</span>
-          <Gift className="w-5 h-5 text-accent animate-pulse" />
+          <Gift className="w-5 h-5 text-accent animate-pulse" aria-hidden={true} />
         </div>
         
         <h3 className="font-heading text-xl sm:text-2xl font-bold text-center mb-2">
@@ -89,8 +103,8 @@ const CountdownTimer = () => {
           <TimeBlock value={timeLeft.seconds} label="Secs" />
         </div>
 
-        <div className="flex items-center justify-center gap-2 mt-6 text-sm text-muted-foreground">
-          <Clock className="w-4 h-4" />
+          <div className="flex items-center justify-center gap-2 mt-6 text-sm text-muted-foreground">
+          <Clock className="w-4 h-4" aria-hidden={true} />
           <span>Offer ends soon - Don't miss out!</span>
         </div>
       </div>

@@ -22,17 +22,17 @@ const Testimonials = () => {
       name: "Priya Sharma",
       role: "Content Creator",
       avatar: "PS",
-      content: "The pricing is unbeatable. I'm paying less than $5/month and getting better results than expensive enterprise tools.",
+      content: "Tanzify's pricing and accuracy let me produce more content for less — perfect for independent creators.",
       rating: 5,
-      highlight: "< $5/month",
+      highlight: "Great Value",
     },
     {
       name: "Alex Rivera",
       role: "YouTuber",
       avatar: "AR",
-      content: "I use Tanzify for all my video captions now. The Hindi transcription is spot-on. Highly recommend for multilingual creators!",
+      content: "I use Tanzify for all my video captions now. The Hindi transcription is spot-on and subtitles sync perfectly — a must for multilingual creators!",
       rating: 5,
-      highlight: "50+ Languages",
+      highlight: "Multilingual Support",
     },
     {
       name: "Emma Wilson",
@@ -53,17 +53,17 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="py-20 bg-muted/30">
+    <section className="py-16 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-2 bg-secondary/10 text-secondary font-medium rounded-full text-sm mb-4">
-            Loved by 10,000+ Users
+            Loved by creators & teams
           </span>
           <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
             What Our <span className="gradient-text-success">Users Say</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Don't just take our word for it. Here's what real users are saying about Tanzify AI.
+            Real stories from podcasters, journalists, and teams who ship faster with Tanzify AI.
           </p>
         </div>
 
@@ -74,7 +74,7 @@ const Testimonials = () => {
               className="bg-card rounded-2xl p-6 border border-border card-hover relative"
             >
               {/* Quote icon */}
-              <Quote className="absolute top-4 right-4 w-8 h-8 text-primary/10" />
+              <Quote className="absolute top-4 right-4 w-8 h-8 text-primary/10" aria-hidden={true} />
 
               {/* Highlight badge */}
               <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-semibold rounded-full mb-4">
@@ -84,7 +84,7 @@ const Testimonials = () => {
               {/* Rating */}
               <div className="flex gap-1 mb-4">
                 {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-accent text-accent" />
+                  <Star key={i} className="w-4 h-4 fill-accent text-accent" aria-hidden={true} />
                 ))}
               </div>
 
@@ -108,18 +108,18 @@ const Testimonials = () => {
         {/* Social Proof Stats */}
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
           {[
-            { value: "10K+", label: "Happy Users" },
-            { value: "1M+", label: "Minutes Transcribed" },
-            { value: "4.9/5", label: "Average Rating" },
-            { value: "50+", label: "Languages Supported" },
-          ].map((stat, index) => (
-            <div key={index} className="text-center">
-              <p className="font-heading text-3xl sm:text-4xl font-bold gradient-text mb-1">
-                {stat.value}
-              </p>
-              <p className="text-muted-foreground text-sm">{stat.label}</p>
-            </div>
-          ))}
+              { value: "10K+", label: "Happy Users" },
+              { value: "1M+", label: "Minutes Transcribed" },
+              { value: "4.9/5", label: "Average Rating" },
+              { value: "50+", label: "Languages Supported" },
+            ].map((stat, index) => (
+              <div key={index} className="text-center">
+                <p className="font-heading text-3xl sm:text-4xl font-bold gradient-text mb-1">
+                  {stat.value}
+                </p>
+                <p className="text-muted-foreground text-sm">{stat.label}</p>
+              </div>
+            ))}
         </div>
       </div>
     </section>
